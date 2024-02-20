@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Signup{% endblock %}
+
+{% block content %}
+<h1 class="centertext">Signup Page</h1>
+<div class="container center-container">
+    <div class="col-md-7 center-form">
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+            <form class="row g-3">
+              <div class="col-md-12">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="inputBorder form-control " id="email" placeholder="Enter your email" required>
+              </div>
+              <div class="col-md-6">
+                <label for="Password " class="form-label">Password</label>
+                <input type="password" class="inputBorder form-control" id="password" placeholder="Enter your password" required>
+            </div>
+              <div class="col-md-6">
+                <label for="Confirm password" class="form-label">Confirm password</label>
+                <input type="password" class="inputBorder form-control" id="conferm-password" placeholder="Confirm your password" required>
+    
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="" required="">
+                  <label class="form-check-label" for="">
+                    Agree to terms and conditions
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <button class="btn-size btn btn-color btn-outline-primary" type="submit">Sign up</button>
+              </div>
+            </form>
+    </div>
+
+</div>
+{% endblock %}

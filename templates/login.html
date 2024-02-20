@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="container center-container">
+    <div class="col-md-8 center-form">
+        <h1 class="mt-5">Login Page</h1>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form action="/Login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="grid">
+                <button type="submit" class="btn-size btn btn-primary mt-3 ms-12">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
