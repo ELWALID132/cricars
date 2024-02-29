@@ -1,62 +1,68 @@
-from flask import Flask, render_template, request, redirect, url_for # Import necessary modules
+from flask import Flask, render_template, request, redirect, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__name__) # Initialize the Flask application
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Change this to a secure secret key
 
-# Sample data for users (replace with a proper database in a real application)
-users = [{'email': 'user1', 'password': 'password1'},
-         {'email': 'user2', 'password': 'password2'}]
+# In-memory user storage (replace this with a database in a production app)
+users = []
 
-# Routes for different pages
-@app.route('/') # Define the route for the home page
+@app.route('/')
 def home():
-    return render_template('home.html') # Render the home page template
+    return render_template("home.html")
 
-@app.route('/about') # Define the route for the about page
-def about():
-    return render_template('about.html') # Render the about page template
-@app.route('/addinfo')
-def info():
-    return render_template('addinfo.html')
-@app.route('/login', methods=['GET', 'POST']) # Define the route for the login page
-def login():
-    if request.method == 'POST': # If the request method is POST
-        email = request.form['email'] # Get the email from the form
-        password = request.form['password'] # Get the password from the form
-
-        # Validate login (replace with proper validation)
-        for user in users: # Loop through the list of users
-            if user['email'] == email and user['password'] == password: # If the email and password match
-                # Redirect to home page after successful login
-                return redirect(url_for('home')) # Redirect to the home page
-
-        # If login fails, show an error message
-        return render_template('login.html', error='Invalid email or password') # Render the login page with an error message
-
-    # If the request is a GET request, render the login page
-    return render_template('login.html') # Render the login page template
-
-@app.route('/signup', methods=['GET', 'POST']) # Define the route for the signup page
+@app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    if request.method == 'POST': # If the request method is POST
-        email = request.form['email'] # Get the email from the form
-        password = request.form['password'] # Get the password from the form
-        confirm_password = request.form['confirm_password'] # Get the confirmed password from the form
+    if request.method == 'POST':
+        username = request.form['email']
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
 
-        # Check if the password length is at least 8 characters
+        # Validate password length
         if len(password) < 8:
-            return render_template('signup.html', error='Password must be at least 8 characters long') # Render the signup page with an error message
+            flash('Password must be at least 8 characters long', 'error')
+            return redirect(url_for('signup'))
 
-        # Check if passwords match
+        # Validate password match
         if password != confirm_password:
-            return render_template('signup.html', error='Passwords do not match') # Render the signup page with an error message
+            flash('Passwords do not match', 'error')
+            return redirect(url_for('signup'))
 
-        # Add user to the list (replace with proper user registration)
-        users.append({'email': email, 'password': password}) # Add the user to the list
+        # Store the user in memory (you should store it in a database in a production app)
+        hashed_password = generate_password_hash(password, method='sha256')
+        users.append({'username': username, 'password': hashed_password})
+        flash('Account created successfully', 'success')
+        return redirect(url_for('login'))
 
-        return redirect(url_for('info')) 
+    return render_template('signup.html')
 
-    # If the request is a GET request, render the signup page
-    return render_template('signup.html') # Render the signup page template
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # Find the user in memory (you should query a database in a production app)
+        user = next((user for user in users if user['username'] == username), None)
+
+        if user and check_password_hash(user['password'], password):
+            flash('Login successful', 'success')
+            # Implement session handling here
+            return redirect(url_for('home'))
+        else:
+            flash('Invalid username or password', 'error')
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    # Implement logout functionality (clear session, etc.)
+    flash('Logged out successfully', 'success')
+    return redirect(url_for('home'))
+
+@app.route("/search")
+def search():
+    return render_template("home.html")
 
 if __name__ == '__main__':
-    app.run(debug=True) # Run the Flask application in debug mode
+    app.run(debug=True)

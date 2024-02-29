@@ -2,5 +2,161 @@
 
 {% block title %}Home{% endblock %}
 {% block content %}
-<h1>Home</h1>
+<div class="hero">
+    <div class="searchForm">
+        <form action="/search" method="GET">
+            <div class="form-group">
+                <input type="text" class="search" name="place" placeholder="Enter an address, a train station..." id="place">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input class="search" placeholder="Start of rental"
+                    onfocus="(this.type='date')"  onblur="(this.type='text')" type="text" name="date" id="date">
+                </div>
+                <div class="form-group col-md-6">
+                    <input class="search"  type="text" placeholder="End of rental"
+                    onfocus="(this.type='date')"  onblur="(this.type='text')" name="date" id="date">
+                </div>
+            </div>
+            <button class="btn btn-outline-primary col-md-12" type="submit"><i class="fas fa-search"></i> Search</button>
+        </form>
+    </div>
+</div>
+<!-- Start Features section -->
+<section class="features">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- Content for the first column -->
+                <i class="fa-solid fa-user-group" style="color: #43E094;"></i>
+                <span>Additional drivers and all equipment for free</span>
+            </div>
+            <div class="col-sm-4">
+                <!-- Content for the first column -->
+                <i class="fa-solid fa-shield" style="color: #43E094;"></i>            <span>Multi-risk insurance and assistance 24/7</span>
+            </div>
+            <div class="col-sm-4">
+                <!-- Content for the first column -->
+                <i class="fa-solid fa-car-side" style="color: #43E094;"></i>            <span>30,000 cars and utility vehicles to rent</span>
+            </div>
+        </div>
+    </div>
+    
+</section>
+<!-- End Features section -->
+
+<section class="cars">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Content for the first column -->
+                <h3 class="lato-light">TRY NOW, CARS NEAR YOU main</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="https://source.unsplash.com/random/?car,white" width="200px"  height="200px" alt="">
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <img src="https://source.unsplash.com/random/?car,red" width="200px"  height="200px" alt="">
+                        </div>
+                    </div>
+                <!-- <div class="container"> -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <img src="https://source.unsplash.com/random/?car,yellow" width="200px"  height="200px" alt="">
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <img src="https://source.unsplash.com/random/?car,black" width="200px"  height="200px" alt="">
+                        </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <!-- Content for the second column -->
+                <h3 class="la">OVER 3 million user trust us</h3>
+                <div class="contrainer">
+                    <div class="row">
+                        <div class="col-sm-12 testimonial" >
+                            <p>testimonial</p>
+                        </div>
+                        <div class="col-sm-12 testimonial">
+                            <p>testimonial</p>
+                        </div>
+                        <div class="col-sm-12 testimonial">
+                            <p>testimonial</p>
+                        </div>
+                        <div class="col-sm-12 testimonial">
+                            <p>testimonial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="themap">
+    <h3 class="lato-light">We are all over here</h3>
+    <div class="map"></div>
+
+</section>
+<section class="cartypes">
+    <h3>A particular need? A car for</h3>
+    <div class="container">
+        <div class="row row-cols-3 row-cols-lg-5 g-4">
+            <!-- Column 1 -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://source.unsplash.com/random/?car,weekend" width="50px" height="50px" alt="" srcset="">
+                        <h5>WEEKEND</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 2 -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://source.unsplash.com/random/?car,Holidays" width="50px" height="50px" alt="" srcset="">
+                        <h5>Holidays</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 3 -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://source.unsplash.com/random/?car,Moving,house" width="50px" height="50px" alt="" srcset="">
+                        <h5>Moving house</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 4 -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://source.unsplash.com/random/?car,work" width="50px" height="50px" alt="" srcset="">
+                        <h5>For work</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Column 5 -->
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <img src="https://source.unsplash.com/random/?car,red" width="50px" height="50px" alt="" srcset="">
+                        <h5>Wedding</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
 {% endblock %}
