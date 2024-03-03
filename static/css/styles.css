@@ -14,7 +14,7 @@
   --input-border-radius: 12px;
   --footer-border-top-left-radius: 80px;
   --footer-border-top-right-radius: 80px;
-  --main-website-color: #43E094;
+  --main-website-color: # ;
   --messages-color: red;
   --footer-h4-color: #FFF;
   --footer-background-color: #111111;
@@ -22,6 +22,8 @@
   --footer-p-color: #AFB0B2;
   --secondary-main-color:#54D7F3;
   --on-secondary:#003640;
+  --input-bkc:#E6E0E9;
+  --primary-container:#005230;
   --input-padding: 8px;
   --footer-padding-top: 50px;
 }
@@ -36,6 +38,26 @@
   font-weight: 300;
   font-style: normal;
 }
+/* Frame 2 */
+
+/* Auto layout */
+/* 
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px;
+gap: 10px;
+
+position: absolute;
+width: 103px;
+height: 103px;
+left: calc(50% - 103px/2);
+top: calc(50% - 103px/2 - 0.5px);
+
+background: #43E094;
+border-radius: 50px; */
+
 
 .lato-regular {
   font-family: "Lato", sans-serif;
@@ -48,7 +70,15 @@
   font-weight: 700;
   font-style: normal;
 }
-
+.textcontainer h2{
+  font-size: 2.6rem;
+}
+.textcontainer h3{
+  font-size: 1.6rem;
+}
+.textcontainer {
+  color: white
+}
 .lato-black {
   font-family: "Lato", sans-serif;
   font-weight: 900;
@@ -110,8 +140,8 @@
   margin: 12px 0;
 }
 section div.map{
-  background-image: url(https://source.unsplash.com/random/map);
-  min-height: 800PX;
+  background-image: url("https://source.unsplash.com/random/maps?people");
+  min-height: 500PX;
 }
 section  h3{
   text-align: center;
@@ -134,17 +164,21 @@ section  h3{
    border: none;
    border-bottom: .5px solid black;
    background-color: var(--input-bkc);
+
   }
-  
+  .textcontainer{
+    margin-left: 55px;
+  }
   .btn-outline-primary{
    color: #43E094;
-   background-color: transparent;
-   border-color: #43E094;
+   background-color: var(--primary-container);
+   /* border-color: #43E094; */
+   border-color: transparent
   }
   .btn-outline-primary:hover{
    color: white;
    background-color: #43E094;
-   border-color: #43E094;
+   border-color: transparent;
   }
   .btn-outline-primary:focus{
    color: white !important;
@@ -160,7 +194,10 @@ section  h3{
  ul.messages li {
    color: var(--messages-color);
  }
-#signupForm .btn{
+.login{
+  width: 30%;
+ }
+.login .btn{
   padding: 8px;
   border-radius: var(--btn-border-radius);
   border: var(--btn-border-style);
@@ -192,3 +229,16 @@ section  h3{
  .footer-section {
   padding-left: 48px;
  }
+footer .dropdow-btn{
+  background-color: transparent;
+  border: none;
+  color: var(--footer-a-color);
+  margin-left: -12px;
+}
+footer a.LOGO{
+  color: var(--footer-h4-color);
+  padding: 30px 5px;
+  background-color: var(--main-website-color);
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
