@@ -14,7 +14,7 @@
   --input-border-radius: 12px;
   --footer-border-top-left-radius: 80px;
   --footer-border-top-right-radius: 80px;
-  --main-website-color: # ;
+  --main-website-color: #0ae76a ;
   --messages-color: red;
   --footer-h4-color: #FFF;
   --footer-background-color: #111111;
@@ -131,7 +131,9 @@ section  h3{
    max-width: var(--form-max-width);
    margin: var(--form-margin);
  }
- 
+ .a-color{
+  color: var(--main-website-color);
+ }
  label {
    display: var(--label-display);
    margin-bottom: var(--label-margin-bottom);

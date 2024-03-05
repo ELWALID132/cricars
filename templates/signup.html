@@ -6,25 +6,23 @@
 <div class="">
     <h2 class="centerText">Welcome aboard</h2>
   <form id="signupForm" action="/signup" method="post"  class="form-width">
-      <div class="form-group">
+      <div class="form-group" >
           <input
-           class="form-control main-input-style" 
-          placeholder="Email"
-          type="email" 
-          class="form-control main-input-style"
-           id="email"
+            class="form-control main-input-style" 
+            placeholder="Email"
+            type="email" 
+            id="validationCustom01"
             name="email"
-             required
+            required
              >
       </div>
 
       <div class="form-row">
           <div class="form-group col-md-6">
               <input
-               class="form-control main-input-style"
+                class="form-control main-input-style"
                 placeholder="Password" 
                 type="password" 
-                class="form-control" 
                 id="password" 
                 name="password" 
                 required="">
@@ -32,12 +30,12 @@
 
           <div class="form-group col-md-6">
               <input  
-              class="form-control main-input-style"
-               type="password" class="form-control" 
-               id="confirm_password" 
-               placeholder="Confirm password" 
-               name="confirm_password" 
-               required="">
+                class="form-control main-input-style"
+                type="password"
+                id="confirm_password" 
+                placeholder="Confirm password" 
+                name="confirm_password" 
+                required="">
           </div>
           
       </div>
@@ -50,11 +48,13 @@
         <label
         class="form-check-label lato-regular"
         for="defaultCheck1">
-        I have read and agree to the <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy </a>
+        I have read and agree to the <a href="#" target="_blank" class="a-color" rel="noopener noreferrer">Privacy Policy </a>
     </label>
       </div>
       <br>
       <button type="submit" class="btn  btn-outline-primary col-md-12 btn-style"><i class="fa-solid fa-user-plus"></i> Sign-up</button>
+      <p class="lato-regular mt-3">Already have an account? <a class="a-color" href="/login">Log in here</a></p>
+
   </form>
 </div>
 {% endblock %}
