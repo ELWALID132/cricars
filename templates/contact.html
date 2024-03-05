@@ -2,5 +2,44 @@
 
 {% block title %}contact us{% endblock %}
 {% block content %}
-<h1>contact us</h1>
+<form action="" method="post">
+    <div class="mb-3">
+        <label for="" class="form-label">Your email address</label>
+        <input
+            type="Email"
+            class="form-control"
+            name="email"
+            id="email"
+            required=""
+            placeholder="Enter your email address"
+        />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Subject</label>
+        <input
+            type="text"
+            class="form-control"
+            name="subject"
+            id="subject"
+            required=""
+
+            placeholder="What is this about"
+        />
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Description</label>
+        <textarea class="form-control" required="" name="message" id="message" rows="3"></textarea>
+    </div>
+    <button
+        
+        type="submit"
+        class="btn btn-primary btn-style"
+        type="submit"
+    >
+        <i class="fa fa-paper-plane"></i> Send
+    </button>
+    
+    
+    
+</form>
 {% endblock %}

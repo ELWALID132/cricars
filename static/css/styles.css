@@ -38,25 +38,6 @@
   font-weight: 300;
   font-style: normal;
 }
-/* Frame 2 */
-
-/* Auto layout */
-/* 
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-items: center;
-padding: 10px;
-gap: 10px;
-
-position: absolute;
-width: 103px;
-height: 103px;
-left: calc(50% - 103px/2);
-top: calc(50% - 103px/2 - 0.5px);
-
-background: #43E094;
-border-radius: 50px; */
 
 
 .lato-regular {
@@ -166,21 +147,27 @@ section  h3{
    background-color: var(--input-bkc);
 
   }
-  .textcontainer{
+.textcontainer{
     margin-left: 55px;
   }
-  .btn-outline-primary{
+.main-input-style{
+    border:none;
+    border-bottom:1px solid var(--primary-container) ;
+    border-radius: 15px;
+    padding: 20px;
+  }
+.btn-style{
    color: #43E094;
    background-color: var(--primary-container);
-   /* border-color: #43E094; */
-   border-color: transparent
+   border-color: transparent;
+   border-radius: 15px;
   }
-  .btn-outline-primary:hover{
+  .btn-style:hover{
    color: white;
    background-color: #43E094;
    border-color: transparent;
   }
-  .btn-outline-primary:focus{
+  .btn-style:focus{
    color: white !important;
    background-color: #43E094 !important;
    border-color: #43E094 !important;
@@ -194,13 +181,11 @@ section  h3{
  ul.messages li {
    color: var(--messages-color);
  }
-.login{
-  width: 30%;
- }
-.login .btn{
-  padding: 8px;
-  border-radius: var(--btn-border-radius);
-  border: var(--btn-border-style);
+.form-width{
+  width: 50%;
+}
+h2.centerText{
+  text-align: center;
 }
  footer {
    padding-top: var(--footer-padding-top);

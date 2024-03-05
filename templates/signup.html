@@ -4,33 +4,57 @@
 
 {% block content %}
 <div class="">
-  <form id="signupForm" action="/signup" method="post">
+    <h2 class="centerText">Welcome aboard</h2>
+  <form id="signupForm" action="/signup" method="post"  class="form-width">
       <div class="form-group">
-          <label for="email">Email:</label>
-          <input class="search" type="email" class="form-control" id="email" name="email" required>
-          <div id="emailError" class="error"></div>
+          <input
+           class="form-control main-input-style" 
+          placeholder="Email"
+          type="email" 
+          class="form-control main-input-style"
+           id="email"
+            name="email"
+             required
+             >
       </div>
 
       <div class="form-row">
           <div class="form-group col-md-6">
-              <label for="password">Password:</label>
-              <input class="search" type="password" class="form-control" id="password" name="password" required>
-              <div id="passwordError" class="error"></div>
+              <input
+               class="form-control main-input-style"
+                placeholder="Password" 
+                type="password" 
+                class="form-control" 
+                id="password" 
+                name="password" 
+                required="">
           </div>
 
           <div class="form-group col-md-6">
-              <label for="confirm_password">Confirm Password:</label>
-              <input  class="search" type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-              <div id="confirmPasswordError" class="error"></div>
+              <input  
+              class="form-control main-input-style"
+               type="password" class="form-control" 
+               id="confirm_password" 
+               placeholder="Confirm password" 
+               name="confirm_password" 
+               required="">
           </div>
           
       </div>
       <div class="form-check">
-        <input class="form-check-input" required type="checkbox" value="" id="defaultCheck1">
-        <label class="form-check-label" for="defaultCheck1">
-            I have read and agree to the <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy </a>       </label>
+        <input
+        class="form-check-input" 
+        required 
+        type="checkbox" value="" 
+        id="defaultCheck1">
+        <label
+        class="form-check-label lato-regular"
+        for="defaultCheck1">
+        I have read and agree to the <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy </a>
+    </label>
       </div>
-      <button type="submit" class="btn btn-outline-primary col-md-12" disabled><i class="fa-solid fa-user-plus"></i> Sign-up</button>
+      <br>
+      <button type="submit" class="btn  btn-outline-primary col-md-12 btn-style"><i class="fa-solid fa-user-plus"></i> Sign-up</button>
   </form>
 </div>
 {% endblock %}
