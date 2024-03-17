@@ -40,7 +40,7 @@ def contact():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
    if request.method == 'POST':
-       # Getting user input from signup form
+      # Getting user input from signup form
        username = request.form['email']
        password = request.form['password']
        confirm_password = request.form['confirm_password']

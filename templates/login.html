@@ -1,27 +1,27 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Login
+Login
 {% endblock %}
 
 {% block content %}
-<h2 class="centerText">Welcome back</h2>
-    <form class="form-width" action="/login" method="post">
-        <div class="form-group">
-            <input type="email" class="form-control main-input-style" id="email" placeholder="Email" name="email" required>
-        </div>
+<h2 class="display-4 text-center">Welcome Back</h2>
+<form class="w-50" action="/login" method="post">
+    <div class="form-group">
+        <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
+    </div>
 
-        <div class="form-group">
-            <input type="password" class="form-control main-input-style" id="password" placeholder="Password" pname="password" required>
-        </div>
-        <div class="form-group">
-            <p class="lato-light">forget password? <a href="/resetpassword">Reset password</a></p>
-        </div>
+    <div class="form-group">
+        <input type="password" class="form-control" id="password" placeholder="Password" pname="password" required>
+    </div>
+    <div class="form-group">
+        <p class="lato-light">forget password? <a href="/resetpassword">Reset password</a></p>
+    </div>
 
-        <button type="submit" class="btn btn-primary col-md-12 btn-style">
-            <i class="fa-solid fa-right-to-bracket"></i> Login
-        </button>
+    <button type="submit" class="btn btn-primary col-md-12 btn-style">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+    </button>
 
-        <p class="lato-regular">Don't have an account? <a href="/signup">Create one here</a></p>
-    </form>
+    <p class="lato-light mt-3">Don't have an account? <a class="" href="/signup">Create one here</a></p>
+</form>
 {% endblock %}

@@ -6,7 +6,6 @@
   --input-width: 100%;
   --input-padding: 8px;
   --input-margin-bottom: 10px;
-  --messages-list-style: none;
   --messages-padding: 0;
   --footer-padding-top: 50px;
   --btn-border-radius: 12px;
@@ -15,7 +14,6 @@
   --footer-border-top-left-radius: 80px;
   --footer-border-top-right-radius: 80px;
   --main-website-color: #0ae76a ;
-  --messages-color: red;
   --footer-h4-color: #FFF;
   --footer-background-color: #111111;
   --footer-a-color: #AFB0B2;
@@ -23,7 +21,7 @@
   --secondary-main-color:#54D7F3;
   --on-secondary:#003640;
   --input-bkc:#E6E0E9;
-  --primary-container:#005230;
+  --primary-container:#43E094;
   --input-padding: 8px;
   --footer-padding-top: 50px;
 }
@@ -159,13 +157,16 @@ section  h3{
     padding: 20px;
   }
 .btn-style{
-   color: #43E094;
+   color: whitesmoke;
    background-color: var(--primary-container);
    border-color: transparent;
    border-radius: 15px;
+   opacity: 90%;
+
   }
   .btn-style:hover{
    color: white;
+   opacity: 100%;
    background-color: #43E094;
    border-color: transparent;
   }
@@ -175,20 +176,6 @@ section  h3{
    border-color: #43E094 !important;
   }
  
- ul.messages {
-   list-style: var(--messages-list-style);
-   padding: var(--messages-padding);
- }
- 
- ul.messages li {
-   color: var(--messages-color);
- }
-.form-width{
-  width: 50%;
-}
-h2.centerText{
-  text-align: center;
-}
  footer {
    padding-top: var(--footer-padding-top);
    border-top-left-radius: var(--footer-border-top-left-radius);
