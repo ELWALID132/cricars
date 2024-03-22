@@ -97,6 +97,8 @@ def addinfo():
 def rental():
    return render_template("rental.html")
 
+# route for insurance
+
 # Route for logout
 @app.route('/logout')
 def logout():

@@ -2,5 +2,99 @@
 
 {% block title %}rent my car{% endblock %}
 {% block content %}
-<h1>rent my car</h1>
+
+<!-- ========== Start Rent car ========== -->
+
+<section class="rentCar py-5">
+    <div class="container w-75 content-start">
+        <h3 class="text-start text-left text-light m-3">Renting out your car is a good way to make money! How much can
+            you
+            earn?</h3>
+    </div>
+    <div class="container w-75 content-start">
+        <div class="row ">
+            <div class="col-lg-2 m-3">
+                <select name="car" class="form-select form-select-lg" id="car">
+                    <option value="" selected disabled>Car</option>
+                    <option value="Citroen">Citroen</option>
+                    <option value="Mercedes">Mercedes</option>
+                    <option value="Dacia">Dacia</option>
+                    <option value="Peugeot">Peugeot</option>
+                    <option value="BMW">BMW</option>
+                    <option value="Audi">Audi</option>
+                    <option value="Opel">Opel</option>
+
+                </select>
+            </div>
+
+
+            <div class="col-lg-2 m-3">
+                <select name="model" class="form-select form-select-lg" id="model">
+                    <option value="" selected disabled>Model</option>
+                    <option value="">Car model</option>
+                    <option value="">Car model</option>
+                    <option value="">Car model</option>
+                    <option value="">Car model</option>
+                    <option value="">Car model</option>
+                    <option value="">Car model</option>
+                    <option value="">Car model</option>
+                </select>
+            </div>
+            <div class="col-lg-2  m-3">
+                <select name="Year" class="form-select form-select-lg" id="Year">
+                    <option value="" selected disabled>Year</option>
+                    <option value="">2013</option>
+                    <option value="">2014</option>
+                    <option value="">2015</option>
+                    <option value="">2016</option>
+                    <option value="">2018</option>
+                    <option value="">2019</option>
+                    <option value="">2020</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-style m-3">Rent my car</button>
+    </div>
+</section>
+
+<!-- ========== End Rent car ========== -->
+
+<!-- ========== Start Features ========== -->
+<div class="features py-5 container w-75 text-center align-items-center gape-2">
+    <div class="row ">
+        <!-- Add free -->
+        <div class="col-lg-4 ">
+            <h1 class="display-3 "><i class="bi bi-badge-ad text-warning"></i></h1>
+            <h5 class="">Create your ad for free</h5>
+            <p class="lead">In just a few clicks, you can place your ad for free on the website and start renting!
+            </p>
+        </div>
+        <!-- Earn money easy -->
+        <div class="col-lg-4">
+            <h1 class="display-3 "><i class="bi bi-cash text-warning"></i></h1>
+            <h5 class="">Earn money easily </h5>
+            <p class="lead">Insurance, maintenance, fuel, parking... Rent out your car, earn money and get a return
+                on your car expenses.</p>
+        </div>
+        <!-- insurance -->
+        <div class="col-lg-4">
+            <h1 class="display-3 "><i class="bi bi-shield-check text-warning"></i></h1>
+            <h5 class="">Take advantage of our insurance</h5>
+            <p class="lead">When you rent out your car, you benefit from XXX multi-risk insurance. Your bonus-malus
+                rating is not affected.</p>
+        </div>
+    </div>
+</div>
+<!-- ========== End Features ========== -->
+<!-- ========== Start insurance ========== -->
+<div class="container text-start w-75">
+    <h3 class="lato-bold w-50 py-3">With XXX Insurance, you can rent out your car with confidence on Cricars.</h3>
+    <p class="fw-light w-50">Every rental is covered by our partner AXA, at no extra cost to you. The rental
+        contract will provide proof of the driver's responsibility. And yes, as a member of the OuiCar family, you have
+        our support, you truly deserve it.</p>
+    <a href="#" class="btn btn-style px-5 py-1 mb-5">Find out more about XXX Insurance</a>
+</div>
+
+<!-- ========== End insurance ========== -->
+
 {% endblock %}
