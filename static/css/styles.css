@@ -95,7 +95,7 @@
 }
 
 .hero{
-  background-image: url("https://source.unsplash.com/random/family?beach,");
+  background-image: url("https://source.unsplash.com/random/?beach,family");
   background-size:  width="100%"  height="200px";
     padding:96px 48px;
 }
@@ -119,7 +119,7 @@
   margin: 12px 0;
 }
 section div.map{
-  background-image: url("https://source.unsplash.com/random/maps?people");
+  background-image: url("https://source.unsplash.com/random/?maps");
   min-height: 500PX;
 }
 section  h3{
@@ -218,5 +218,8 @@ footer a.LOGO{
 }
 
 section.rentCar{
-  background-image: url(https://images.unsplash.com/photo-1520121401995-928cd50d4e27?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-image: url("https://source.unsplash.com/random/?green");
+}
+.insurance-hero {
+  background-image: url("https://source.unsplash.com/random/?black");
 }

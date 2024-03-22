@@ -98,6 +98,9 @@ def rental():
    return render_template("rental.html")
 
 # route for insurance
+@app.route("/insurance")
+def insurance():
+   return render_template("insurance.html")
 
 # Route for logout
 @app.route('/logout')
