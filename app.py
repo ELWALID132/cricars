@@ -21,10 +21,10 @@ def renttmycar():
 def resetpassword():
    return render_template("resetpassword.html")
 
-# Route for insurnece page
-@app.route("/insurnece")
-def insurnece():
-   return render_template("insurnece.html")
+# Route for insurance page
+@app.route("/insurance")
+def insurance():
+   return render_template("insurance.html")
 
 # Route for help page
 @app.route("/help")
@@ -96,11 +96,6 @@ def addinfo():
 @app.route('/rental')
 def rental():
    return render_template("rental.html")
-
-# route for insurance
-@app.route("/insurance")
-def insurance():
-   return render_template("insurance.html")
 
 # Route for logout
 @app.route('/logout')
