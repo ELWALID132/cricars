@@ -160,7 +160,7 @@ section  h3{
    color: whitesmoke;
    background-color: var(--primary-container);
    border-color: transparent;
-   border-radius: 15px;
+   border-radius: 0.25rem;
    opacity: 90%;
 
   }
