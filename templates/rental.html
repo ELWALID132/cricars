@@ -1,6 +1,68 @@
+<!-- this page when you want to rent a car -->
+<!-- this is only an example -->
 {% extends "base.html" %}
 
 {% block title %}Rent a car{% endblock %}
 {% block content %}
-<h1>Rent a car</h1>
+<div class="heroRental">
+    <div class="container p-5">
+        <div class="row">
+            <div class="col-lg-6 lato-regular">
+                <h4>RENTAL CAR FIAT 500</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Carousel -->
+                <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+                    <!-- Indicators/dots -->
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                    </div>
+
+                    <!-- The slideshow/carousel -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://rb.gy/yhwj21" alt="Los Angeles" class="d-block w-100">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://rb.gy/wgr8lg" alt="Chicago" class="d-block w-75 text-center" height="400">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://rb.gy/epz6gt" alt="New York" class="d-block w-100">
+                        </div>
+                    </div>
+
+                    <!-- Left and right controls/icons -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </div>
+            <div class=" col-lg-6 mt-5">
+                <input class="form-control" placeholder="Start of rental" onfocus="(this.type='date')"
+                    onblur="(this.type='text')" type="text" name="date" id="date">
+                <input class="form-control  mt-3" type="text" placeholder="End of rental" onfocus="(this.type='date')"
+                    onblur="(this.type='text')" name="date" id="date">
+                <input type="number" class="form-control mt-3" placeholder="KM">
+                <h5 class="text-center my-3">Price/day MAD</h5>
+                <button class="btn btn-style col-12 mb-3">Book this vehicle</button>
+                <p class="lead">No charge for additional drivers</p>
+                <p class="lead w-75">Free cancellation up to 24 hours before the start of the rental</p>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
 {% endblock %}
