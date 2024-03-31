@@ -13,7 +13,7 @@ def home():
 
 # Route for rent my car page
 @app.route("/rentmycar")
-def renttmycar():
+def rentmycar():
    return render_template("rentmycar.html")
 
 # Route for reset password page
