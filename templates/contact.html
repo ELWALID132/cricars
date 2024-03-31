@@ -14,27 +14,20 @@
         direct your question to the appropriate department. Be precise and if necessary, do not hesitate to attach
         photocopies of documents to your message.</p>
     <form action="" method="post" class="">
-        <div class="mb-3">
-            <input type="Email" class="form-control" name="email" id="email" required=""
-                placeholder="Enter your email address" />
-        </div>
-        <div class="mb-3">
-            <input type="text" class="form-control" name="subject" id="subject" required=""
-                placeholder="What is this about" />
-        </div>
-        <div class="mb-3">
-            <textarea class="form-control" required="" placeholder="We are here to help you" name="message" id="message"
-                rows="5"></textarea>
-        </div>
+        <input type="Email" class="form-control mb-3" name="email" id="email" required=""
+            placeholder="Enter your email address" />
+        <input type="text" class="form-control mb-3" name="subject" id="subject" required=""
+            placeholder="What is this about" />
+        <textarea class="form-control mb-3" required="" placeholder="We are here to help you" name="message"
+            id="message" rows="5"></textarea>
+        <input type="file" class="form-control mb-3 name="" id="" placeholder="" aria-describedby=" fileHelpId" />
         <button type="submit" class="btn btn-style" type="submit"><i class="bi bi-send"></i> Send</button>
     </form>
-
     <div class="container text-center ">
         <p class="fw-bold ">Join us at</p>
         <a href=""><i class="bi bi-instagram text-dark mx-1 px-1"></i></a>
         <a href=""><i class="bi bi-twitter text-dark mx-1 px-1"></i></a>
         <a href=""><i class="bi bi-facebook text-dark mx-1 px-1"></i></a>
     </div>
-
 </div>
 {% endblock %}
