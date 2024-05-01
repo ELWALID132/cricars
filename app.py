@@ -1,10 +1,43 @@
 from flask import Flask, render_template, request, redirect, url_for, flash # Importing necessary modules from Flask for web development
 from werkzeug.security import generate_password_hash, check_password_hash # Importing password security functions
+import mysql.connector
 
 app = Flask(__name__) # Creating a new Flask web server
 
 # List to store user information
 users = []
+try:
+    mydb = mysql.connector.connect(
+        host="localhost",
+        user="elwalid",
+        password="VIOLON1999",
+        database="mydatabase"
+    )
+
+    mycursor = mydb.cursor()
+
+    # Use CREATE TABLE to create a new table within the existing database
+    sql_guest = """
+        CREATE TABLE guests (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            firstName VARCHAR(255),
+            lastName VARCHAR(255),
+            email VARCHAR(255) UNIQUE,
+            CIN VARCHAR(255) UNIQUE,
+            license VARCHAR(255) UNIQUE,
+            licenseDateOfDelivery DATE,
+            DayOfBirth DATE,
+            address VARCHAR(255)
+        )
+    """
+
+    mycursor.execute(sql_guest)
+
+    print("\033[92mTable 'guests' created successfully!\033[0m")  # Green text indicating success
+
+except mysql.connector.Error as err:
+    print("\033[91mError creating table: {}\033[0m".format(err))  # Red text indicating error
+
 
 # Route for home page
 @app.route('/')

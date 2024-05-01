@@ -229,3 +229,16 @@ section.rentCar{
 .helpHero{
   background-image: url("https://source.unsplash.com/random/?help");
 }
+
+.equipmentList span{
+  background-color: #ace9f7;
+  padding: 0.26rem;
+  margin: 0.4rem;
+  border-radius: 0.5rem;
+}
+.requirementsList span{
+  background-color: #ace9f7;
+  padding: 0.26rem;
+  margin: 0.4rem;
+  border-radius: 0.5rem;
+}
