@@ -1,48 +1,120 @@
-from flask import Flask, render_template, request, redirect, url_for, flash # Importing necessary modules from Flask for web development
+from flask import Flask, render_template, request, redirect, url_for, session, flash # Importing necessary modules from Flask for web development
 from werkzeug.security import generate_password_hash, check_password_hash # Importing password security functions
-import mysql.connector
+from passlib.hash import pbkdf2_sha256
+from db.database import Database
+
+
 
 app = Flask(__name__) # Creating a new Flask web server
 
-# List to store user information
-users = []
-try:
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="elwalid",
-        password="VIOLON1999",
-        database="mydatabase"
-    )
+# Create an instance of the Database class
+db = Database()
 
-    mycursor = mydb.cursor()
+# Call the create_table method to create the 'guests' table
+db.create_table() 
+app.secret_key = 'your_secret_key_here'
 
-    # Use CREATE TABLE to create a new table within the existing database
-    sql_guest = """
-        CREATE TABLE guests (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            firstName VARCHAR(255),
-            lastName VARCHAR(255),
-            email VARCHAR(255) UNIQUE,
-            CIN VARCHAR(255) UNIQUE,
-            license VARCHAR(255) UNIQUE,
-            licenseDateOfDelivery DATE,
-            DayOfBirth DATE,
-            address VARCHAR(255)
-        )
-    """
-
-    mycursor.execute(sql_guest)
-
-    print("\033[92mTable 'guests' created successfully!\033[0m")  # Green text indicating success
-
-except mysql.connector.Error as err:
-    print("\033[91mError creating table: {}\033[0m".format(err))  # Red text indicating error
-
+# For demonstration purposes, let's assume the user is authenticated
+authenticated = False
 
 # Route for home page
 @app.route('/')
 def home():
-   return render_template("home.html")
+    return render_template('home.html', authenticated=authenticated)
+
+# Route for signup page
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+   # Forget any user_id
+    session.clear()
+    # User reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+        # Ensure email was submitted
+        if not request.form.get("email"):
+            flash("Must provide email", "error")
+            return redirect(url_for("signup"))
+
+        # Ensure password was submitted
+        elif not request.form.get("password"):
+            flash("Must provide password", "error")
+            return redirect(url_for("signup"))
+
+        # Ensure confirm password was submitted
+        elif not request.form.get("confirm_password"):
+            flash("Must provide the confirm password", "error")
+            return redirect(url_for("signup"))
+
+        # Ensure that password and confirm password match
+        elif request.form.get("password") != request.form.get("confirm_password"):
+            flash("The password and the confirm password must match", "error")
+            return redirect(url_for("signup"))
+
+        # Ensure that the chosen email is unique (does not exist in the database)
+        val = (request.form.get("email"),)
+        sql = "SELECT * FROM guests WHERE email = %s"
+        db.mycursor.execute(sql, val)
+        rows = db.mycursor.fetchall()
+        if len(rows) >= 1:
+            flash("Username already exists", "error")
+            return redirect(url_for("signup"))
+
+        # Add user to database
+        hashed_password = pbkdf2_sha256.hash(request.form.get("password"))
+        sql = "INSERT INTO guests (email, password) VALUES (%s, %s)"
+        val = (request.form.get("email"), hashed_password)
+        db.mycursor.execute(sql, val)
+        db.mydb.commit()
+
+        # Login user automatically and remember session
+        db.mycursor.execute("SELECT * FROM guests WHERE email = %s", (request.form.get("email"),))
+        rows = db.mycursor.fetchall()
+        session["user_id"] = rows[0][0]
+
+        # Redirect to home page
+        return redirect(url_for("home"))
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("signup.html")
+
+
+# login route
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        if not email:
+            flash("Email must be provided", "error")
+            return redirect(url_for("login"))
+
+        elif not password:
+            flash("Password must be provided", "error")
+            return redirect(url_for("login"))
+
+        # Ensure that the chosen email is in the DB
+        sql = "SELECT * FROM guests WHERE email = %s"
+        db.mycursor.execute(sql, (email,))
+        user = db.mycursor.fetchone()
+
+        if not user:
+            flash("Incorrect email or password", "error")
+            return redirect(url_for("login"))
+
+        # Verify password
+        if not pbkdf2_sha256.verify(password, user[2]):  # Assuming password is at index 2
+            flash("Incorrect email or password", "error")
+            return redirect(url_for("login"))
+
+        # Remember which user has logged in
+        session["user_id"] = user[0]
+
+        # Redirect user to home page
+        return redirect(url_for("home"))
+
+    else:
+        return render_template("login.html")
 
 # Route for rent my car page
 @app.route("/rentmycar")
@@ -69,57 +141,6 @@ def help():
 def contact():
    return render_template("contact.html")
 
-# Route for signup page
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-   if request.method == 'POST':
-      # Getting user input from signup form
-       username = request.form['email']
-       password = request.form['password']
-       confirm_password = request.form['confirm_password']
-
-       # Validating password length
-       if len(password) < 8:
-           flash('Password must be at least 8 characters long', 'error')
-           return redirect(url_for('signup'))
-
-       # Validating password confirmation
-       if password != confirm_password:
-           flash('Passwords do not match', 'error')
-           return redirect(url_for('signup'))
-
-       # Hashing password for security
-       hashed_password = generate_password_hash(password, method='sha256')
-
-       # Adding user information to the users list
-       users.append({'username': username, 'password': hashed_password})
-
-       # Displaying success message
-       flash('Account created successfully', 'success')
-       return redirect(url_for('login'))
-
-   return render_template('signup.html')
-
-# Route for login page
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-   if request.method == 'POST':
-       # Getting user input from login form
-       username = request.form['username']
-       password = request.form['password']
-
-       # Searching for user in the users list
-       user = next((user for user in users if user['username'] == username), None)
-
-       # Checking if user exists and password is correct
-       if user and check_password_hash(user['password'], password):
-           flash('Login successful', 'success')
-           return redirect(url_for('home'))
-       else:
-           flash('Invalid username or password', 'error')
-
-   return render_template('login.html')
-
 # Route for addinfo page
 @app.route('/addinfo')
 def addinfo():
@@ -130,11 +151,10 @@ def addinfo():
 def rental():
    return render_template("rental.html")
 
-# Route for logout
 @app.route('/logout')
 def logout():
-   flash('Logged out successfully', 'success')
-   return redirect(url_for('home'))
+    session.pop('email', None)
+    return redirect(url_for('home'))
 
 # Route for search page
 @app.route("/search")

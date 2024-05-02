@@ -3,13 +3,22 @@
 {% block title %}Signup{% endblock %}
 
 {% block content %}
+
 <h2 class="display-4 text-center">Welcome Aboard</h2>
-<form id="signupForm" action="/signup" method="post" class="w-50">
-  <input class="form-control " placeholder="Email" type="email" id="validationCustom01" name="email" required>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+    {% for category, message in messages %}
+        <div class="{{ category }}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+<form id="signupForm" action="{{ url_for('signup') }}" method="POST" class="w-50">
+  <input class="form-control " placeholder="Email" type="email" id="email" name="email" required>
 
   <div class="row ">
     <div class="col-md-6 mt-3">
-      <input class="form-control " placeholder="Password" type="password" id="password" name="password" required="">
+      <input class="form-control " placeholder="Password" type="password" id="password" name="password" required>
     </div>
 
     <div class="col-md-6 mt-3">
@@ -19,7 +28,7 @@
 
   </div>
   <div class="form-check mt-3">
-    <input class="form-check-input" required type="checkbox" value="" id="defaultCheck1">
+    <input class="form-check-input" required type="checkbox" value="" name="checkbox" id="defaultCheck1">
     <label class="form-check-label lato-regular" for="defaultCheck1">
       By creating an account, I confirm that I have read and accept Cricars’s General Terms and Conditions, the
       <a href="#" target="_blank" class="a-color">Confidentiality Policy</a> and the <a href="#" target="_blank"
