@@ -5,6 +5,7 @@ Login
 {% endblock %}
 
 {% block content %}
+<h2 class="display-4 text-center">Welcome Back</h2>
 {% with messages = get_flashed_messages() %}
 {% if messages %}
     <ul>
@@ -14,7 +15,6 @@ Login
     </ul>
 {% endif %}
 {% endwith %}
-<h2 class="display-4 text-center">Welcome Back</h2>
 <form id="signupForm" action="{{ url_for('login') }}" method="post" class="w-50">
     <input class="form-control my-3 " placeholder="Email" type="email" id="validationCustom01" name="email" required>
     <input class="form-control my-3 " placeholder="Password" type="password" id="password" name="password" required="">

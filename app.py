@@ -15,7 +15,7 @@ db.create_table()
 app.secret_key = 'your_secret_key_here'
 
 # For demonstration purposes, let's assume the user is authenticated
-authenticated = False
+authenticated = True
 
 # Route for home page
 @app.route('/')
@@ -25,97 +25,103 @@ def home():
 # Route for signup page
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-   # Forget any user_id
+    # Forget any user_id
     session.clear()
+    
     # User reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
         # Ensure email was submitted
         if not request.form.get("email"):
             flash("Must provide email", "error")
             return redirect(url_for("signup"))
-
+        
         # Ensure password was submitted
         elif not request.form.get("password"):
             flash("Must provide password", "error")
             return redirect(url_for("signup"))
-
+        
         # Ensure confirm password was submitted
         elif not request.form.get("confirm_password"):
             flash("Must provide the confirm password", "error")
             return redirect(url_for("signup"))
-
+        
         # Ensure that password and confirm password match
-        elif request.form.get("password") != request.form.get("confirm_password"):
+        elif request.form.get("password")!= request.form.get("confirm_password"):
             flash("The password and the confirm password must match", "error")
             return redirect(url_for("signup"))
-
+        
         # Ensure that the chosen email is unique (does not exist in the database)
         val = (request.form.get("email"),)
         sql = "SELECT * FROM guests WHERE email = %s"
-        db.mycursor.execute(sql, val)
-        rows = db.mycursor.fetchall()
+        cursor = db.connection.cursor()
+        cursor.execute(sql, val)
+        rows = cursor.fetchall()
         if len(rows) >= 1:
-            flash("Username already exists", "error")
+            flash("Email already exists", "error")
             return redirect(url_for("signup"))
-
+        
         # Add user to database
-        hashed_password = pbkdf2_sha256.hash(request.form.get("password"))
+        hashed_password = generate_password_hash(request.form.get("password"))
         sql = "INSERT INTO guests (email, password) VALUES (%s, %s)"
         val = (request.form.get("email"), hashed_password)
-        db.mycursor.execute(sql, val)
-        db.mydb.commit()
-
+        cursor.execute(sql, val)
+        db.connection.commit()
+        
         # Login user automatically and remember session
-        db.mycursor.execute("SELECT * FROM guests WHERE email = %s", (request.form.get("email"),))
-        rows = db.mycursor.fetchall()
+        cursor.execute("SELECT * FROM guests WHERE email = %s", (request.form.get("email"),))
+        rows = cursor.fetchall()
         session["user_id"] = rows[0][0]
-
+        
         # Redirect to home page
         return redirect(url_for("home"))
-
+    
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("signup.html")
 
-
-# login route
+# Login route
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    # Check if the request method is POST
     if request.method == "POST":
+        # Get email and password from the form
         email = request.form.get("email")
         password = request.form.get("password")
 
+        # Check if email is provided
         if not email:
             flash("Email must be provided", "error")
             return redirect(url_for("login"))
 
+        # Check if password is provided
         elif not password:
             flash("Password must be provided", "error")
             return redirect(url_for("login"))
 
-        # Ensure that the chosen email is in the DB
+        # Query the database to check if the email exists
         sql = "SELECT * FROM guests WHERE email = %s"
         db.mycursor.execute(sql, (email,))
         user = db.mycursor.fetchone()
 
+        # Check if the email exists in the database
         if not user:
             flash("Incorrect email or password", "error")
             return redirect(url_for("login"))
 
-        # Verify password
+        # Verify the password
         if not pbkdf2_sha256.verify(password, user[2]):  # Assuming password is at index 2
             flash("Incorrect email or password", "error")
             return redirect(url_for("login"))
 
-        # Remember which user has logged in
+        # Store the user ID in the session
         session["user_id"] = user[0]
 
-        # Redirect user to home page
+        # Redirect the user to the home page
         return redirect(url_for("home"))
 
+    # If the request method is GET, render the login template
     else:
         return render_template("login.html")
-
 # Route for rent my car page
 @app.route("/rentmycar")
 def rentmycar():
