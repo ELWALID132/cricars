@@ -1,87 +1,70 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash # Importing necessary modules from Flask for web development
-from werkzeug.security import generate_password_hash, check_password_hash # Importing password security functions
-from passlib.hash import pbkdf2_sha256
-from db.database import Database
+from flask import Flask, render_template, flash, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import login_user ,login_required , logout_user , LoginManager , current_user
+from flask_bcrypt import Bcrypt
+from .models import User
+from .forms import RegisterForms, LoginForms
+# Initialize the Flask app
+app = Flask(__name__)
 
+# Initialize the Bcrypt library for password hashing
+bcrypt = Bcrypt(app)
 
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 
-app = Flask(__name__) # Creating a new Flask web server
+# Add configuration for using a SQLite database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 
-# Create an instance of the Database class
-db = Database()
+# Set a secret key for the app
+app.config['SECRET_KEY'] = "TheSuperSecretKey"
 
-# Call the create_table method to create the 'guests' table
-db.create_table() 
-app.secret_key = 'your_secret_key_here'
-
-# For demonstration purposes, let's assume the user is authenticated
-authenticated = True
+# Initialize the SQLAlchemy instance
+db = SQLAlchemy(app)
 
 # Route for home page
 @app.route('/')
 def home():
-    return render_template('home.html', authenticated=authenticated)
+    return render_template('index.html')
 
-# Route for signup page
+
+# Create a route for the login page
+@app.route("/login", methods = ["GET", "POST"])
+def login():
+    form = LoginForms()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email = form.email.data).first()
+        if user : 
+            if bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user , login_manager)
+                return redirect(url_for('rental'))
+        else:
+            flash('Login unsuccessful. Please check your email and password.')
+
+    return render_template("login.html", form = form)
+
+# Create a route for the register page
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
-    # Forget any user_id
-    session.clear()
-    
-    # User reached route via POST (as by submitting a form via POST)
-    if request.method == "POST":
-        # Ensure email was submitted
-        if not request.form.get("email"):
-            flash("Must provide email", "error")
-            return redirect(url_for("signup"))
-        
-        # Ensure password was submitted
-        elif not request.form.get("password"):
-            flash("Must provide password", "error")
-            return redirect(url_for("signup"))
-        
-        # Ensure confirm password was submitted
-        elif not request.form.get("confirm_password"):
-            flash("Must provide the confirm password", "error")
-            return redirect(url_for("signup"))
-        
-        # Ensure that password and confirm password match
-        elif request.form.get("password")!= request.form.get("confirm_password"):
-            flash("The password and the confirm password must match", "error")
-            return redirect(url_for("signup"))
-        
-        # Ensure that the chosen email is unique (does not exist in the database)
-        val = (request.form.get("email"),)
-        sql = "SELECT * FROM guests WHERE email = %s"
-        cursor = db.connection.cursor()
-        cursor.execute(sql, val)
-        rows = cursor.fetchall()
-        if len(rows) >= 1:
-            flash("Email already exists", "error")
-            return redirect(url_for("signup"))
-        
-        # Add user to database
-        hashed_password = generate_password_hash(request.form.get("password"))
-        sql = "INSERT INTO guests (email, password) VALUES (%s, %s)"
-        val = (request.form.get("email"), hashed_password)
-        cursor.execute(sql, val)
-        db.connection.commit()
-        
-        # Login user automatically and remember session
-        cursor.execute("SELECT * FROM guests WHERE email = %s", (request.form.get("email"),))
-        rows = cursor.fetchall()
-        session["user_id"] = rows[0][0]
-        
-        # Redirect to home page
-        return redirect(url_for("home"))
-    
+    form = RegisterForms()
+
+    if form.validate_on_submit():
+        # Hash the entered password
+        hashed_password = bcrypt.generate_password_hash(form.password.data)
+        # Create a new User instance with the entered email and hashed password
+        new_user = User(email = form.email.data, password = hashed_password)
+        # Add the new User instance to the database session
+        db.session.add(new_user)
+        # Commit the changes to the database
+        db.session.commit()
+        # Redirect to the login page
+        return redirect(url_for('login'))
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("signup.html")
 
-# Login route
-@app.route("/login", methods=['GET', 'POST'])
-def login():
+
     # Check if the request method is POST
     if request.method == "POST":
         # Get email and password from the form
@@ -154,12 +137,15 @@ def addinfo():
 
 # Route for rental page
 @app.route('/rental')
+@login_required
 def rental():
    return render_template("rental.html")
 
+# Create a route for the logout page
 @app.route('/logout')
+@login_required
 def logout():
-    session.pop('email', None)
+    logout_user()
     return redirect(url_for('home'))
 
 # Route for search page
@@ -172,6 +158,16 @@ def search():
 def about():
    return render_template("about.html")
 
-# Running the Flask app
+# Create a route for the 404 error page
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
+
+# Create a route for the 500 error page
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template("500.html"), 500
+
+# Run the Flask app
 if __name__ == '__main__':
    app.run(debug=True)

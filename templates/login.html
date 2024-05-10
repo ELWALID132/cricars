@@ -19,7 +19,7 @@ Login
     <input class="form-control my-3 " placeholder="Email" type="email" id="validationCustom01" name="email" required>
     <input class="form-control my-3 " placeholder="Password" type="password" id="password" name="password" required="">
     <p class="lato-regular">Forgot password?
-        <a class="a-color" href="/resetpassword">Reset password</a>
+        <a class="a-color" href="{{ url_for('resetpassword') }}">Reset password</a>
     </p>
     <button type="submit" class="btn col-12 btn-style">
         <i class="bi bi-box-arrow-in-right mx-2"></i>
