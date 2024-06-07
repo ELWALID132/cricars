@@ -8,7 +8,7 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
     {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">
+      <div class="alert w-50 m-auto alert-{{ category }}">
         {{ message }}
       </div>
     {% endfor %}
@@ -19,38 +19,25 @@
   {{ form.hidden_tag() }}
 
   <div class="form-group">
-    {{ form.email(class_='form-control mt-3') }}
-    {% if form.email.errors %}
+    {{ form.date_of_birth(class_='form-control mt-3') }}
+    {% if form.date_of_birth.errors %}
       <ul class="errors">
-        {% for error in form.email.errors %}
+        {% for error in form.date_of_birth.errors %}
           <li style="color: red;">{{ error }}</li>
         {% endfor %}
       </ul>
     {% endif %}
   </div>
 
-  <div class="row">
-    <div class="form-group col-md-6">
-      {{ form.password(class_='form-control mt-3') }}
-      {% if form.password.errors %}
-        <ul class="errors">
-          {% for error in form.password.errors %}
-            <li style="color: red;">{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
-
-    <div class="form-group col-md-6">
-      {{ form.confirm_password(class_='form-control mt-3') }}
-      {% if form.confirm_password.errors %}
-        <ul class="errors">
-          {% for error in form.confirm_password.errors %}
-            <li style="color: red;">{{ error }}</li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </div>
+  <div class="form-group">
+    {{ form.date_of_drivers_license(class_='form-control mt-3') }}
+    {% if form.date_of_drivers_license.errors %}
+      <ul class="errors">
+        {% for error in form.date_of_drivers_license.errors %}
+          <li style="color: red;">{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </div>
 
   <div class="form-check mt-3">

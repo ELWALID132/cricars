@@ -9,24 +9,20 @@
         <h3 class="lato-bold">Feeling the urge to go? Absolutely!</h3>
     </div>
     <div class="searchForm">
-        <form action="" method="">
-            <div class="">
-                <input type="text" class="form-control mb-3" name="place"
-                    placeholder="Enter an address, a train station..." id="place">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.place }}
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input class="form-control" placeholder="Start of rental" onfocus="(this.type='date')"
-                        onblur="(this.type='text')" type="text" name="date" id="date">
+                    {{ form.start_date }}
                 </div>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="End of rental" onfocus="(this.type='date')"
-                        onblur="(this.type='text')" name="date" id="date">
+                    {{ form.end_date }}
                 </div>
             </div>
-            <button class="btn btn-outline-seconday btn-style col-md-12 sm-mt-3" type="submit">
-                <i class="bi bi-search"></i>
-                &ThickSpace; Search</button>
+            {{ form.submit() }}
         </form>
     </div>
 </div>
@@ -86,7 +82,7 @@
 
             <div class="col-lg-6">
                 <!-- Content for the second column -->
-                <h3 class="la">OVER 3 million user trust us</h3>
+                <h3 class="la">OVER 3 million guest trust us</h3>
                 <div class="row">
                     <div class="col-sm-12 testimonial">
                         <p>testimonial</p>
