@@ -241,4 +241,11 @@ section.rentCar{
   padding: 0.26rem;
   margin: 0.4rem;
   border-radius: 0.5rem;
+
+  /***** about section page *****/ }
+.about-hero{
+  min-height: 200Px;
+  height: 400px;
+  background-image: url("https://source.unsplash.com/random/?darkgreen");
 }
+/***** End about section page *****/

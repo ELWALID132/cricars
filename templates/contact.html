@@ -1,33 +1,24 @@
-{% extends "base.html" %}
-
-{% block title %}contact us{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Contact us{% endblock %} {% block
+content %}
 <div class="p-5">
-
-    <h2 class="display-4 text-center">How can we help you?</h2>
-    <p class="fw-light lead text-start px-5"> Help us answer you faster! Specify your problem by filling in the fields
-        below
-        which
-        will
-        allow us
-        to
-        direct your question to the appropriate department. Be precise and if necessary, do not hesitate to attach
-        photocopies of documents to your message.</p>
-    <form action="" method="post" class="">
-        <input type="Email" class="form-control mb-3" name="email" id="email" required=""
-            placeholder="Enter your email address" />
-        <input type="text" class="form-control mb-3" name="subject" id="subject" required=""
-            placeholder="What is this about" />
-        <textarea class="form-control mb-3" required="" placeholder="We are here to help you" name="message"
-            id="message" rows="5"></textarea>
-        <input type="file" class="form-control mb-3 name="" id="" placeholder="" aria-describedby=" fileHelpId" />
-        <button type="submit" class="btn btn-style" type="submit"><i class="bi bi-send"></i> Send</button>
-    </form>
-    <div class="container text-center ">
-        <p class="fw-bold ">Join us at</p>
-        <a href=""><i class="bi bi-instagram text-dark mx-1 px-1"></i></a>
-        <a href=""><i class="bi bi-twitter text-dark mx-1 px-1"></i></a>
-        <a href=""><i class="bi bi-facebook text-dark mx-1 px-1"></i></a>
-    </div>
+  <h2 class="display-4 text-center">How can we help you?</h2>
+  <p class="fw-light lead text-start px-5">
+    Help us answer you faster! Specify your problem by filling in the fields
+    below which will allow us to direct your question to the appropriate
+    department. Be precise and if necessary, do not hesitate to attach
+    photocopies of documents to your message.
+  </p>
+  <form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }} {{ form.email }} {{ form.subject }} {{ form.message
+    }} {{ form.file }} {{ form.submit }}
+  </form>
+  <div class="container text-center">
+    <p class="fw-bold">Join us at</p>
+    <a target="_blank" href="https://www.instagram.com/cricars_ma"
+      ><i class="bi bi-instagram text-dark mx-1 px-1"></i
+    ></a>
+    <a href=""><i class="bi bi-twitter text-dark mx-1 px-1"></i></a>
+    <a href=""><i class="bi bi-facebook text-dark mx-1 px-1"></i></a>
+  </div>
 </div>
 {% endblock %}

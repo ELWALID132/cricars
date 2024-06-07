@@ -1,0 +1,143 @@
+{% extends "base.html" %} {% block title %}Explore{% endblock %} {% block
+content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Sidebar -->
+    <div
+      class="col-lg-3 col-md-4 col-sm-12 d-flex flex-column flex-shrink-0 p-3 bg-light"
+    >
+      <p class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark">
+        <span class="fs-4 px-5">Car results</span>
+      </p>
+      <hr />
+      <ul class="nav nav-pills flex-column mb-2 px-5">
+        <li class="nav-item my-1">Meknes</li>
+        <li class="nav-item my-1">05-jun-2024</li>
+        <li class="nav-item my-1">10-jun-2024</li>
+      </ul>
+      <hr />
+      <form method="POST" action="">
+        {{ form.hidden_tag() }} {{ form.place }} {{ form.start_date }} {{
+        form.end_date }} {{ form.submit() }}
+      </form>
+    </div>
+
+    <!-- Main content -->
+    <div class="col-lg-9 col-md-8 col-sm-12">
+      <!-- ========== Start Card section ========== -->
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://placehold.co/600x400/000000/FFFFFF/png"
+              class="card-img-top"
+              alt="Fiat 500X"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Book this vehicle</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://placehold.co/600x400/CCCCCC/FFFFFF/png"
+              class="card-img-top"
+              alt="Fiat 500X"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Book this vehicle</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://placehold.co/600x400/000000/FFFFFF/png"
+              class="card-img-top"
+              alt="Fiat 500X"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Book this vehicle</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========== End Card section ========== -->
+
+      <!-- ========== Start Second Card section ========== -->
+      <div class="row mt-4">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://placehold.co/600x400/000000/FFFFFF/png"
+              class="card-img-top"
+              alt="Fiat 500X"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Book this vehicle</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://placehold.co/600x400/CCCCCC/FFFFFF/png"
+              class="card-img-top"
+              alt="Fiat 500X"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Book this vehicle</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://placehold.co/600x400/000000/FFFFFF/png"
+              class="card-img-top"
+              alt="Fiat 500X"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <a href="#" class="btn btn-primary">Book this vehicle</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========== End Second Card section ========== -->
+    </div>
+  </div>
+</div>
+
+{% endblock %}
