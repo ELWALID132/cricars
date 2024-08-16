@@ -6,6 +6,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField,TextAreaField,  PasswordField, SubmitField, BooleanField, DateField
 from wtforms.validators import InputRequired, Length, ValidationError, DataRequired, Email, EqualTo, Regexp
 from flask_wtf.file import FileField, FileRequired
+from werkzeug.utils import secure_filename
+import os
 
 # Initialize the Flask app
 app = Flask(__name__)

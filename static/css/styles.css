@@ -1,3 +1,6 @@
+/***** Start Variables *****/  
+
+
 :root {
   --form-max-width: 90%;
   --form-margin: 20px auto;
@@ -14,6 +17,7 @@
   --footer-border-top-left-radius: 80px;
   --footer-border-top-right-radius: 80px;
   --main-website-color: #0ae76a ;
+  ---on-primary-container: #66FDAE;
   --footer-h4-color: #FFF;
   --footer-background-color: #111111;
   --footer-a-color: #AFB0B2;
@@ -37,7 +41,6 @@
   font-style: normal;
 }
 
-
 .lato-regular {
   font-family: "Lato", sans-serif;
   font-weight: 400;
@@ -48,15 +51,6 @@
   font-family: "Lato", sans-serif;
   font-weight: 700;
   font-style: normal;
-}
-.textcontainer h2{
-  font-size: 2.6rem;
-}
-.textcontainer h3{
-  font-size: 1.6rem;
-}
-.textcontainer {
-  color: white
 }
 .lato-black {
   font-family: "Lato", sans-serif;
@@ -93,11 +87,25 @@
   font-weight: 900;
   font-style: italic;
 }
+.col-sm-6{
+  margin: 12px 0;
+}
+/***** End Variables *****/
 
+/***** Start Home page *****/ 
 .hero{
-  background-image: url("https://source.unsplash.com/random/?beach,family");
+  background-image: url("https://images.unsplash.com/photo-1475503572774-15a45e5d60b9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size:  width="100%"  height="200px";
     padding:96px 48px;
+}
+.text-container h2{
+  font-size: 2.6rem;
+}
+.text-container h3{
+  font-size: 1.6rem;
+}
+.text-container {
+  color: white
 }
 .features{
   padding: 48px;
@@ -115,24 +123,23 @@
   border: 0.5px solid #003640;
   border-radius: 12px;
 }
-.col-sm-6{
-  margin: 12px 0;
-}
+/***** End Home page *****/
+
 section div.map{
-  background-image: url("https://source.unsplash.com/random/?maps");
+  background-image: url("https://images.unsplash.com/photo-1479232284091-c8829ec114ad?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   min-height: 500PX;
 }
 section  h3{
   text-align: center;
 }
- form {
+form {
    max-width: var(--form-max-width);
    margin: var(--form-margin);
  }
- .a-color{
+.a-color{
   color: var(--main-website-color);
  }
- label {
+label {
    display: var(--label-display);
    margin-bottom: var(--label-margin-bottom);
  }
@@ -147,7 +154,7 @@ section  h3{
    background-color: var(--input-bkc);
 
   }
-.textcontainer{
+.text-container{
     margin-left: 55px;
   }
 .main-input-style{
@@ -156,78 +163,38 @@ section  h3{
     border-radius: 15px;
     padding: 20px;
   }
+
+  /***** start buttons *****/ 
 .btn-style{
-   color: whitesmoke;
-   background-color: var(--primary-container);
-   border-radius: 0.25rem;
-   opacity: 90%;
-   transition: 0.3s;
-
-  }
-  .btn-style:hover{
-   color: white;
-   opacity: 90%;
-   border: #36b276 solid 1px;
-   background-color: var(--primary-container);
-   /* border-color: transparent; */
-  }
-  .btn-style:focus{
-   color: white !important;
-   background-color: #43E094 !important;
-   opacity: 100%;
-
-  }
- 
- footer {
-   padding-top: var(--footer-padding-top);
-   border-top-left-radius: var(--footer-border-top-left-radius);
-   border-top-right-radius: var(--footer-border-top-right-radius);
-   background-color: var(--footer-background-color);
-   width: 100%;
-   margin:auto;
-   
- }
- 
- footer h4 {
-   color: var(--footer-h4-color);
-   margin-bottom: 24px;
-
-
- }
- 
- footer a,
- footer p {
-   color: var(--footer-a-color);
- }
- footer i{
-  margin-right: 12px;
- }
- .footer-section {
-  padding-left: 48px;
- }
-footer .dropdow-btn{
-  background-color: transparent;
-  border: none;
-  color: var(--footer-a-color);
-  margin-left: -12px;
+     color: whitesmoke;
+     background-color: var(--primary-container);
+     border-radius: 0.25rem;
+     opacity: 90%;
+     transition: 0.3s;
 }
-footer a.LOGO{
-  color: var(--footer-h4-color);
-  padding: 30px 5px;
-  background-color: var(--main-website-color);
-  border-radius: 50%;
-  margin-bottom: 12px;
+.btn-style:hover{
+     color: white;
+     opacity: 90%;
+     border: #36b276 solid 1px;
+     background-color: var(--primary-container);
 }
-
+.btn-style:focus{
+     color: white !important;
+     background-color: #43E094 !important;
+     opacity: 100%;
+  
+}
+/***** End buttons *****/
+  
 section.rentCar{
-  background-image: url("https://source.unsplash.com/random/?green");
+  background-image: url("https://images.unsplash.com/photo-1592330169142-b488cfd72b2b?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 }
 .insurance-hero {
-  background-image: url("https://source.unsplash.com/random/?black");
+  background-image: url("https://images.unsplash.com/photo-1684498887952-c7117fdffce3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 }
 
 .helpHero{
-  background-image: url("https://source.unsplash.com/random/?help");
+  background-image: url("https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
 }
 
 .equipmentList span{
@@ -242,10 +209,67 @@ section.rentCar{
   margin: 0.4rem;
   border-radius: 0.5rem;
 
-  /***** about section page *****/ }
+}
+  /***** about section page *****/ 
 .about-hero{
   min-height: 200Px;
   height: 400px;
-  background-image: url("https://source.unsplash.com/random/?darkgreen");
+  background-image: url("https://images.unsplash.com/photo-1655480530311-b3c63da9021e?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+.join-us{
+  width: 84%;
+  margin: auto;
+  background-color: #005230;
+  text-align: center;
+  height: 200px;
+  border-top-left-radius: var(--footer-border-top-left-radius);
+   border-top-right-radius: var(--footer-border-top-right-radius);
+}
+.on-primary-container {
+  color: var(---on-primary-container);
 }
 /***** End about section page *****/
+
+/***** Start Footer *****/  
+ 
+footer {
+  padding-top: var(--footer-padding-top);
+  border-top-left-radius: var(--footer-border-top-left-radius);
+  border-top-right-radius: var(--footer-border-top-right-radius);
+  background-color: var(--footer-background-color);
+  width: 100%;
+  margin:auto;
+  
+}
+
+footer h4 {
+  color: var(--footer-h4-color);
+  margin-bottom: 24px;
+
+
+}
+
+footer a,
+footer p {
+  color: var(--footer-a-color);
+}
+footer i{
+ margin-right: 12px;
+}
+.footer-section {
+ padding-left: 48px;
+}
+footer .dropdow-btn{
+ background-color: transparent;
+ border: none;
+ color: var(--footer-a-color);
+ margin-left: -12px;
+}
+footer a.LOGO{
+ color: var(--footer-h4-color);
+ padding: 30px 5px;
+ background-color: var(--main-website-color);
+ border-radius: 50%;
+ margin-bottom: 12px;
+}
+/***** End Footer *****/
