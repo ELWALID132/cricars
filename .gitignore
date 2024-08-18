@@ -6,11 +6,14 @@ instance/*
 !instance/.gitignore
 .webassets-cache
 .env
+
 flask-env/
 
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
+__pycache__/app.cpython-312.pyc   
+__pycache__/models.cpython-312.pyc
 *.py[cod]
 *$py.class
 
