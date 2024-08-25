@@ -159,21 +159,23 @@ section  h3{
 .btn-style{
    color: whitesmoke;
    background-color: var(--primary-container);
-   border-color: transparent;
    border-radius: 0.25rem;
    opacity: 90%;
+   transition: 0.3s;
 
   }
   .btn-style:hover{
    color: white;
-   opacity: 100%;
-   background-color: #43E094;
-   border-color: transparent;
+   opacity: 90%;
+   border: #36b276 solid 1px;
+   background-color: var(--primary-container);
+   /* border-color: transparent; */
   }
   .btn-style:focus{
    color: white !important;
    background-color: #43E094 !important;
-   border-color: #43E094 !important;
+   opacity: 100%;
+
   }
  
  footer {
@@ -223,3 +225,27 @@ section.rentCar{
 .insurance-hero {
   background-image: url("https://source.unsplash.com/random/?black");
 }
+
+.helpHero{
+  background-image: url("https://source.unsplash.com/random/?help");
+}
+
+.equipmentList span{
+  background-color: #ace9f7;
+  padding: 0.26rem;
+  margin: 0.4rem;
+  border-radius: 0.5rem;
+}
+.requirementsList span{
+  background-color: #ace9f7;
+  padding: 0.26rem;
+  margin: 0.4rem;
+  border-radius: 0.5rem;
+
+  /***** about section page *****/ }
+.about-hero{
+  min-height: 200Px;
+  height: 400px;
+  background-image: url("https://source.unsplash.com/random/?darkgreen");
+}
+/***** End about section page *****/

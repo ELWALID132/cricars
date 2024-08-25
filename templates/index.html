@@ -9,24 +9,20 @@
         <h3 class="lato-bold">Feeling the urge to go? Absolutely!</h3>
     </div>
     <div class="searchForm">
-        <form action="" method="">
-            <div class="">
-                <input type="text" class="form-control mb-3" name="place"
-                    placeholder="Enter an address, a train station..." id="place">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.place }}
             </div>
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <input class="form-control" placeholder="Start of rental" onfocus="(this.type='date')"
-                        onblur="(this.type='text')" type="text" name="date" id="date">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form.start_date }}
                 </div>
                 <div class="col-md-6">
-                    <input class="form-control" type="text" placeholder="End of rental" onfocus="(this.type='date')"
-                        onblur="(this.type='text')" name="date" id="date">
+                    {{ form.end_date }}
                 </div>
             </div>
-            <button class="btn btn-outline-seconday btn-style col-md-12" type="submit">
-                <i class="bi bi-search"></i>
-                &ThickSpace; Search</button>
+            {{ form.submit() }}
         </form>
     </div>
 </div>
@@ -86,7 +82,7 @@
 
             <div class="col-lg-6">
                 <!-- Content for the second column -->
-                <h3 class="la">OVER 3 million user trust us</h3>
+                <h3 class="la">OVER 3 million guest trust us</h3>
                 <div class="row">
                     <div class="col-sm-12 testimonial">
                         <p>testimonial</p>
@@ -171,5 +167,24 @@
         </div>
     </div>
 
+</section>
+<section class="moreInfo p-4">
+    <div class="container">
+        <div class="row justify-content-center align-items-center g-2">
+            <div class="col card shadow-sm p-4 m-3">
+                <h4>Any questions?</h4>
+                <p>Our team is available seven days a week
+                    at <a href="mailto: contact@cricars.com" class="text-decoration-none">
+                        <span style="color: #43E094;">contact@cricars.com</span></p>
+                </a>
+            </div>
+            <div class="col p-4 shadow-sm card m-3">
+                <h4>All rentals are insured by XXX</h4>
+                <p>Insurance included in the price. Multi-risk accident and theft coverage. 24-hour breakdown assistance
+                    for all vehicles.</p>
+            </div>
+        </div>
+
+    </div>
 </section>
 {% endblock %}

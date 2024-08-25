@@ -1,45 +1,24 @@
-{% extends "base.html" %}
-
-{% block title %}contact us{% endblock %}
-{% block content %}
-<form action="" method="post">
-    <div class="mb-3">
-        <label for="" class="form-label">Your email address</label>
-        <input
-            type="Email"
-            class="form-control"
-            name="email"
-            id="email"
-            required=""
-            placeholder="Enter your email address"
-        />
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label">Subject</label>
-        <input
-            type="text"
-            class="form-control"
-            name="subject"
-            id="subject"
-            required=""
-
-            placeholder="What is this about"
-        />
-    </div>
-    <div class="mb-3">
-        <label for="" class="form-label">Description</label>
-        <textarea class="form-control" required="" name="message" id="message" rows="3"></textarea>
-    </div>
-    <button
-        
-        type="submit"
-        class="btn btn-primary btn-style"
-        type="submit"
-    >
-        <i class="fa fa-paper-plane"></i> Send
-    </button>
-    
-    
-    
-</form>
+{% extends "base.html" %} {% block title %}Contact us{% endblock %} {% block
+content %}
+<div class="p-5">
+  <h2 class="display-4 text-center">How can we help you?</h2>
+  <p class="fw-light lead text-start px-5">
+    Help us answer you faster! Specify your problem by filling in the fields
+    below which will allow us to direct your question to the appropriate
+    department. Be precise and if necessary, do not hesitate to attach
+    photocopies of documents to your message.
+  </p>
+  <form action="" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }} {{ form.email }} {{ form.subject }} {{ form.message
+    }} {{ form.file }} {{ form.submit }}
+  </form>
+  <div class="container text-center">
+    <p class="fw-bold">Join us at</p>
+    <a target="_blank" href="https://www.instagram.com/cricars_ma"
+      ><i class="bi bi-instagram text-dark mx-1 px-1"></i
+    ></a>
+    <a href=""><i class="bi bi-twitter text-dark mx-1 px-1"></i></a>
+    <a href=""><i class="bi bi-facebook text-dark mx-1 px-1"></i></a>
+  </div>
+</div>
 {% endblock %}
