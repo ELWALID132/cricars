@@ -8,7 +8,7 @@ from wtforms.validators import InputRequired, Length, ValidationError, DataRequi
 from flask_wtf.file import FileField, FileRequired
 from werkzeug.utils import secure_filename
 import os
-
+from itsdangerous import URLSafeTimedSerializer
 # Initialize the Flask app
 app = Flask(__name__)
 
@@ -85,6 +85,27 @@ class ResetPasswordForm(FlaskForm):
 @login_manager.user_loader
 def load_user(user_id):
     return guests.query.get(int(user_id))
+
+"""
+still have to know how the hell this works || using chatgpt for it 
+being committed anyways
+""" 
+def generate_reset_token(email):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    return serializer.dumps(email, salt=app.config['SECURITY_PASSWORD_SALT'])
+
+def verify_reset_token(token, expiration=3600):
+    serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
+    try:
+        email = serializer.loads(
+            token,
+            salt=app.config['SECURITY_PASSWORD_SALT'],
+            max_age=expiration
+        )
+    except:
+        return None
+    return email
+
 
 # Route for the home page
 @app.route('/', methods=['GET', 'POST'])
