@@ -77,7 +77,10 @@ class RentalForm(FlaskForm):
     start_date = DateField('Start of rental', format='%Y-%m-%d', validators=[DataRequired()], render_kw={"class": "mb-2 form-control", "placeholder": "Start of rental"})
     end_date = DateField('End of rental', format='%Y-%m-%d', validators=[DataRequired()], render_kw={"class": "mb-2 form-control", "placeholder": "End of rental"})
     submit = SubmitField('Search', render_kw={"class": "btn btn-outline-secondary btn-style col-md-12 sm-mt-3"})
-
+    
+class ResetPasswordForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
 # Load a user with the given user_id
 @login_manager.user_loader
 def load_user(user_id):
@@ -163,6 +166,16 @@ def contact():
         return redirect(url_for('contact'))
 
     return render_template('contact.html', form=form)
+
+# Route for reset password
+@app.route('/reset_password', methods=['GET', 'POST'])
+def reset_password():
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        # Implement your password reset logic here
+        flash('An email has been sent with instructions to reset your password.', 'info')
+        return redirect(url_for('login'))
+    return render_template('reset_password.html', form=form)
 
 # Route for the addinfo page
 @app.route('/addinfo')

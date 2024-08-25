@@ -1,47 +1,53 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block title %}Login{% endblock %} {% block content
+%}
 
-{% block title %}Login{% endblock %}
-
-{% block content %}
 <h2 class="display-4 text-center">Welcome Back</h2>
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%} {% for category, message in messages %}
+<div class="alert alert-{{ category }}">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
 
-<form id="loginForm" action="{{ url_for('login') }}" method="POST" class="w-75 mx-auto">
+<form
+  id="loginForm"
+  action="{{ url_for('login') }}"
+  method="POST"
+  class="w-75 mx-auto"
+>
   {{ form.hidden_tag() }}
 
   <div class="form-group">
-    {{ form.email(class_='form-control mt-3') }}
-    {% if form.email.errors %}
-      <ul class="errors">
-        {% for error in form.email.errors %}
-          <li style="color: red;">{{ error }}</li>
-        {% endfor %}
-      </ul>
+    {{ form.email(class_='form-control mt-3') }} {% if form.email.errors %}
+    <ul class="errors">
+      {% for error in form.email.errors %}
+      <li style="color: red">{{ error }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
   </div>
 
   <div class="form-group">
-    {{ form.password(class_='form-control mt-3') }}
-    {% if form.password.errors %}
-      <ul class="errors">
-        {% for error in form.password.errors %}
-          <li style="color: red;">{{ error }}</li>
-        {% endfor %}
-      </ul>
+    {{ form.password(class_='form-control mt-3') }} {% if form.password.errors
+    %}
+    <ul class="errors">
+      {% for error in form.password.errors %}
+      <li style="color: red">{{ error }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
   </div>
 
-  {{ form.submit(class_='btn btn-style mt-3') }}
+  {{ form.submit(class_='btn btn-style col-12 mt-3') }}
 
-  <p class="lato-regular mt-3">Don't have an account? <a class="a-color" href="{{ url_for('signup') }}">Sign Up here</a></p>
+  <p class="lato-regular mt-3">
+    Have you forgotten your password?
+    <a class="a-color" href="{{ url_for('reset_password') }}"
+      >Reset password here</a
+    >
+  </p>
+  <p class="lato-regular mt-3">
+    Don't have an account?
+    <a class="a-color" href="{{ url_for('signup') }}">Sign Up here</a>
+  </p>
 </form>
 {% endblock %}

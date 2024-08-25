@@ -1,66 +1,63 @@
-{% extends "base.html" %}
-
-{% block title %}Signup{% endblock %}
-
-{% block content %}
+{% extends "base.html" %} {% block title %}Signup{% endblock %} {% block content
+%}
 
 <h2 class="display-4 text-center">Welcome Aboard</h2>
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert alert-{{ category }}">
-        {{ message }}
-      </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %} {% if messages
+%} {% for category, message in messages %}
+<div class="alert alert-{{ category }}">{{ message }}</div>
+{% endfor %} {% endif %} {% endwith %}
 
-<form id="signupForm" action="{{ url_for('signup') }}" method="POST" class="w-75 mx-auto">
+<form
+  id="signupForm"
+  action="{{ url_for('signup') }}"
+  method="POST"
+  class="w-75 mx-auto"
+>
   {{ form.hidden_tag() }}
 
   <div class="form-group">
-    {{ form.email(class_='form-control mt-3') }}
-    {% if form.email.errors %}
-      <ul class="errors">
-        {% for error in form.email.errors %}
-          <li style="color: red;">{{ error }}</li>
-        {% endfor %}
-      </ul>
+    {{ form.email(class_='form-control mt-3') }} {% if form.email.errors %}
+    <ul class="errors">
+      {% for error in form.email.errors %}
+      <li style="color: red">{{ error }}</li>
+      {% endfor %}
+    </ul>
     {% endif %}
   </div>
 
   <div class="row">
     <div class="form-group col-md-6">
-      {{ form.password(class_='form-control mt-3') }}
-      {% if form.password.errors %}
-        <ul class="errors">
-          {% for error in form.password.errors %}
-            <li style="color: red;">{{ error }}</li>
-          {% endfor %}
-        </ul>
+      {{ form.password(class_='form-control mt-3') }} {% if form.password.errors
+      %}
+      <ul class="errors">
+        {% for error in form.password.errors %}
+        <li style="color: red">{{ error }}</li>
+        {% endfor %}
+      </ul>
       {% endif %}
     </div>
 
     <div class="form-group col-md-6">
-      {{ form.confirm_password(class_='form-control mt-3') }}
-      {% if form.confirm_password.errors %}
-        <ul class="errors">
-          {% for error in form.confirm_password.errors %}
-            <li style="color: red;">{{ error }}</li>
-          {% endfor %}
-        </ul>
+      {{ form.confirm_password(class_='form-control mt-3') }} {% if
+      form.confirm_password.errors %}
+      <ul class="errors">
+        {% for error in form.confirm_password.errors %}
+        <li style="color: red">{{ error }}</li>
+        {% endfor %}
+      </ul>
       {% endif %}
     </div>
   </div>
 
   <div class="form-check mt-3">
-    {{ form.agree_to_terms(class_="form-check-input")}}
-    {{ form.agree_to_terms.label(class_='form-check-label lato-regular') }}
+    {{ form.agree_to_terms(class_="form-check-input")}} {{
+    form.agree_to_terms.label(class_='form-check-label lato-regular') }}
   </div>
 
-  {{ form.submit(class_='btn btn-style mt-3') }}
+  {{ form.submit(class_='btn btn-style mt-3 col-12') }}
 
-  <p class="lato-regular mt-3">Already a Cricars member? <a class="a-color" href="/login">Log in here</a></p>
-
+  <p class="lato-regular mt-3">
+    Already a Cricars member? <a class="a-color" href="/login">Log in here</a>
+  </p>
 </form>
 {% endblock %}
