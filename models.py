@@ -1,8 +1,7 @@
-from flask_sqlalchemy import SQLAlchemy
+# models.py
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
+from app import db
 
 class Guest(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
