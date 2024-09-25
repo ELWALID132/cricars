@@ -1,8 +1,15 @@
 # routes.py
 from flask import render_template, redirect, url_for, flash
-from app import app, db
-from models import Guest
-from forms import *
+from app import app
+from extensions import db
+from models import guests
+from forms import RegisterForm, LoginForm, RentalForm, ResetPasswordForm , ContactForm
+from flask_bcrypt import Bcrypt
+from flask_login import login_user, logout_user, login_required, current_user, LoginManager
+from werkzeug.utils import secure_filename
+import os
+
+bcrypt = Bcrypt()
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -13,12 +20,18 @@ def home():
 def signup():
     form = RegisterForm()
     if form.validate_on_submit():
-        existing_guest = Guest.query.filter_by(email=form.email.data).first()
+        if not form.email.data:
+            flash('Error: Email is required.', 'danger')
+            return render_template("signup.html", form=form)
+        if not form.password.data:
+            flash('Error: Password is required.', 'danger')
+            return render_template("signup.html", form=form)
+        existing_guest = guests.query.filter_by(email=form.email.data).first()
         if existing_guest:
             flash('Error: This email is already being used. Please use a different email.', 'danger')
             return render_template("signup.html", form=form)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        new_guest = Guest(email=form.email.data, password=hashed_password)
+        new_guest = guests(email=form.email.data, password=hashed_password)
         db.session.add(new_guest)
         db.session.commit()
         flash('Your account has been created! You can now log in.', 'success')
@@ -32,7 +45,13 @@ def signup():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        guest = Guest.query.filter_by(email=form.email.data).first()
+        if not form.email.data:
+            flash('Error: Email is required.', 'danger')
+            return render_template("login.html", form=form)
+        if not form.password.data:
+            flash('Error: Password is required.', 'danger')
+            return render_template("login.html", form=form)
+        guest = guests.query.filter_by(email=form.email.data).first()
         if guest and bcrypt.check_password_hash(guest.password, form.password.data):
             login_user(guest)
             return redirect(url_for('rental'))
@@ -120,4 +139,3 @@ def page_not_found(e):
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template("500.html"), 500
-
