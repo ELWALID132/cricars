@@ -7,7 +7,8 @@ instance/*
 .webassets-cache
 .venv
 static/files/*
-
+.env
+config.py
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
