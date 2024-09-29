@@ -10,6 +10,7 @@ static/files/*
 .env
 config.py
 ### Flask.Python Stack ###
+.vscode
 # Byte-compiled / optimized / DLL files
 __pycache__/
 __pycache__/app.cpython-312.pyc   
